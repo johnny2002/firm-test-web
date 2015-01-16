@@ -26,6 +26,7 @@
 		<property name="attributes">
 			<props>
 				<prop key="appVersion">${appVersion}</prop>
+				<prop key="buildTime">${buildTime}</prop>
 				<prop key="webRscRoot">${url.rsc.root}</prop>
 				<prop key="RscPage">/res.ftl</prop>
 				<!--<prop key="fileDownloadRoot">${fileDownloadRoot}</prop>
