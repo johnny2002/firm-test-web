@@ -326,15 +326,11 @@
  *    contains a colon (:) then a 'style=' attribute will be used, else a 'class=' attribute
  *    will be used.
 -->
-<#macro showErrors separator classOrStyle="">
+<#macro showErrors separator="<br/>" classOrStyle="errorMessage">
     <#list status.errorMessages as error>
-    <#if classOrStyle == "">
-        <b>${error}</b>
-    <#else>
         <#if classOrStyle?index_of(":") == -1><#assign attr="class"><#else><#assign attr="style"></#if>
         <span ${attr}="${classOrStyle}">${error}</span>
-    </#if>
-    <#if error_has_next>${separator}</#if>
+    	<#if error_has_next>${separator}</#if>
     </#list>
 </#macro>
 
