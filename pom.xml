@@ -23,6 +23,16 @@
 			<artifactId>firm-report-show</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.ibm.gbsc</groupId>
+			<artifactId>gbsc-auth</artifactId>
+			<version>3.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.gbsc</groupId>
+			<artifactId>web-utils</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
 		<!-- <dependency>
 			<groupId>com.ibm.banking.framework</groupId>
 			<artifactId>framework-web</artifactId>
@@ -75,7 +85,21 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 		</dependency>
-
+		<dependency>
+		    <groupId>net.sf.ehcache</groupId>
+		    <artifactId>ehcache-web</artifactId>
+		    <version>2.0.4</version>
+		    <scope>runtime</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-ehcache</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>4.3.2.Final</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -89,7 +113,7 @@
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<artifactId>servlet-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>

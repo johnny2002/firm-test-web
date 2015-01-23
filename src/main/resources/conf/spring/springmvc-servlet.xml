@@ -17,7 +17,7 @@
 
 	<context:annotation-config/>
 
-	<context:component-scan annotation-config="true" base-package="com.ibm.banking.framework.web, com.ibm.banking.auth.web, com.ibm.gbsc.firm.web" />
+	<context:component-scan annotation-config="true" base-package="com.ibm.gbsc.firm.web,com.ibm.gbsc.auth.web" />
 	
 	<mvc:annotation-driven conversion-service="conversionService" />
 	<!--===================== view resovler ===================== -->
@@ -80,6 +80,7 @@
 				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
 				<prop key="date_format">yyyy-MM-dd</prop>
 				<prop key="number_format">#.##</prop>
+				<prop key="classic_compatible">true</prop> 
 			</props>
 		</property>
 		<property name="freemarkerVariables">
@@ -100,12 +101,12 @@
 
 	<!-- 类型转换支持 -->
 	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-		<!-- <property name="converters">
+		<property name="converters">
 			<list>
-				<bean class="com.ibm.banking.framework.web.converter.StringDateConverter" />
-				<bean class="com.ibm.banking.framework.web.converter.DateStringConverter" />
+				<bean class="com.ibm.gbsc.web.springmvc.converter.StringDateConverter" />
+				<bean class="com.ibm.gbsc.web.springmvc.converter.DateStringConverter" />
 			</list>
-		</property> -->
+		</property>
 	</bean>
 	<bean id="webPropertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
@@ -121,11 +122,20 @@
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
-				<value>classpath:i18n/*</value>
+				<value>classpath:i18n/messages</value>
+				<value>classpath:i18n/report-show-messages</value>
+				<value>classpath:i18n/auth-messages</value>
 			</list>
 		</property>
 	</bean>
-	
+
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+          <property name="exceptionMappings">   
+            <props>   
+              <prop key="java.lang.exception">error/500</prop>  
+           </props>   
+         </property>   
+        </bean>  	
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
 		<property name="cookieName" value="clientlanguage"/>
 	</bean>

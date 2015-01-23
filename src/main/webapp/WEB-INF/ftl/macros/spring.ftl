@@ -155,9 +155,10 @@
  * @param attributes any additional attributes for the element (such as class
  *    or CSS styles or size
  -->
-<#macro formInput path attributes="" fieldType="text">
+<#macro formInput path attributes="" fieldType="text" errors=false>
     <@bind path/>
     <input type="${fieldType}" id="${status.expression}" name="${status.expression}" value="<#if fieldType!="password">${stringStatusValue}</#if>" ${attributes}<@closeTag/>
+	<#if errors><@showErrors /></#if>
 </#macro>
 
 <#--
@@ -172,8 +173,9 @@
  * @param attributes any additional attributes for the element (such as class
  *    or CSS styles or size
  -->
-<#macro formPasswordInput path attributes="">
+<#macro formPasswordInput path attributes="" errors=false>
     <@formInput path, attributes, "password"/>
+	<#if errors><@showErrors /></#if>
 </#macro>
 
 <#--
@@ -200,9 +202,10 @@
  * @param attributes any additional attributes for the element (such as class
  *    or CSS styles or size
  -->
-<#macro formTextarea path attributes="">
+<#macro formTextarea path attributes="" errors=false>
     <@bind path/>
     <textarea id="${status.expression}" name="${status.expression}" ${attributes}>${stringStatusValue}</textarea>
+	<#if errors><@showErrors /></#if>
 </#macro>
 
 <#--
@@ -216,7 +219,7 @@
  * @param attributes any additional attributes for the element (such as class
  *    or CSS styles or size
 -->
-<#macro formSingleSelect path options attributes="">
+<#macro formSingleSelect path options attributes="" errors=false>
     <@bind path/>
     <select id="${status.expression}" name="${status.expression}" ${attributes}>
         <#if options?is_hash>
@@ -229,6 +232,7 @@
             </#list>
         </#if>
     </select>
+	<#if errors><@showErrors /></#if>
 </#macro>
 
 <#--
@@ -242,7 +246,7 @@
  * @param attributes any additional attributes for the element (such as class
  *    or CSS styles or size
 -->
-<#macro formMultiSelect path options attributes="">
+<#macro formMultiSelect path options attributes="" errors=false>
     <@bind path/>
     <select multiple="multiple" id="${status.expression}" name="${status.expression}" ${attributes}>
         <#list options?keys as value>
@@ -250,6 +254,7 @@
         <option value="${value?html}"<#if isSelected> selected="selected"</#if>>${options[value]?html}</option>
         </#list>
     </select>
+	<#if errors><@showErrors /></#if>
 </#macro>
 
 <#--
@@ -264,13 +269,14 @@
  * @param attributes any additional attributes for the element (such as class
  *    or CSS styles or size
 -->
-<#macro formRadioButtons path options separator attributes="">
+<#macro formRadioButtons path options separator attributes="" errors=false>
     <@bind path/>
     <#list options?keys as value>
     <#assign id="${status.expression}${value_index}">
     <input type="radio" id="${id}" name="${status.expression}" value="${value?html}"<#if stringStatusValue == value> checked="checked"</#if> ${attributes}<@closeTag/>
     <label for="${id}">${options[value]?html}</label>${separator}
     </#list>
+	<#if errors><@showErrors /></#if>
 </#macro>
 
 <#--
@@ -285,7 +291,7 @@
  * @param attributes any additional attributes for the element (such as class
  *    or CSS styles or size
 -->
-<#macro formCheckboxes path options separator attributes="">
+<#macro formCheckboxes path options separator attributes="" errors=false>
     <@bind path/>
     <#list options?keys as value>
     <#assign id="${status.expression}${value_index}">
@@ -294,6 +300,7 @@
     <label for="${id}">${options[value]?html}</label>${separator}
     </#list>
     <input type="hidden" name="_${status.expression}" value="on"/>
+	<#if errors><@showErrors /></#if>
 </#macro>
 
 <#--
@@ -305,12 +312,13 @@
  * @param attributes any additional attributes for the element (such as class
  *    or CSS styles or size
 -->
-<#macro formCheckbox path attributes="">
+<#macro formCheckbox path attributes="" errors=false>
 	<@bind path />
     <#assign id="${status.expression}">
     <#assign isSelected = status.value?? && status.value?string=="true">
 	<input type="hidden" name="_${id}" value="on"/>
 	<input type="checkbox" id="${id}" name="${id}"<#if isSelected> checked="checked"</#if> ${attributes}/>
+	<#if errors><@showErrors /></#if>
 </#macro>
 
 <#--

@@ -17,8 +17,8 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<jee:jndi-lookup id="dataSource" jndi-name="${datasource.jndi}" proxy-interface="javax.sql.DataSource" lookup-on-startup="false"/>
-	<bean id="log4jInitialization" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-		<property name="targetClass" value="com.ibm.gbsc.utils.log.LogbackConfigurer" />
+	<bean id="logInitialization" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="com.ibm.gbsc.common.log.LogbackConfigurer" />
 		<property name="targetMethod" value="initLogging" />
 		<property name="arguments">
 			<list>
